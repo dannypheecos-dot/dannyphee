@@ -1,6 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import { pageSocial } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  ...pageSocial({ path: "/" }),
+};
 
 const journey: ReadonlyArray<{ n: string; title: string; line: string; href?: string }> = [
   {
@@ -30,19 +36,19 @@ const pillars = [
   {
     href: "/presenting",
     title: "Presenting",
-    src: "/images/dannyphee-presenting-pillar-v1.png",
+    src: "/images/dannyphee-presenting-pillar-v1",
     copy: "Live rooms. Financial products. The work of getting an audience to understand — and act.",
   },
   {
     href: "/markets",
     title: "Markets",
-    src: "/images/dannyphee-markets-pillar-v1.png",
+    src: "/images/dannyphee-markets-pillar-v1",
     copy: "Probability, structure, and decision-making under uncertainty.",
   },
   {
     href: "/ai-lab",
     title: "AI Lab",
-    src: "/images/dannyphee-ai-lab-pillar-v1.png",
+    src: "/images/dannyphee-ai-lab-pillar-v1",
     copy: "A public laboratory. Build, test, break, learn, rebuild.",
   },
 ] as const;
@@ -68,26 +74,29 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <section className="bg-ink">
-        <Image
-          src="/images/x-banner.jpg"
-          alt="Danny Phee — Presenting × Markets × AI. Approved X banner used as-is."
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/x-banner-1500.webp"
+          srcSet="/images/x-banner-828.webp 828w, /images/x-banner-1500.webp 1500w"
+          sizes="100vw"
+          alt="Danny Phee: Presenting × Markets × AI"
           width={1500}
           height={500}
-          priority
-          unoptimized
+          fetchPriority="high"
+          decoding="async"
           className="h-auto w-full"
         />
       </section>
       <section className="mx-auto max-w-site px-5 py-6 md:px-8 md:py-10">
         <div className="flex items-start gap-4 md:gap-8">
           <figure className="editorial-portrait shrink-0">
-            <Image
-              src="/danny-phee-headshot-cutout.png"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/danny-phee-headshot-300.webp"
               alt="Danny Phee"
-              width={1024}
-              height={1536}
-              priority
-              unoptimized
+              width={300}
+              height={450}
+              decoding="async"
               className="h-auto w-full"
             />
           </figure>
@@ -116,13 +125,16 @@ export default function HomePage() {
             Each stage added a skill. Nothing was abandoned.
           </p>
           <figure className="mt-6 overflow-hidden">
-            <Image
-              src="/images/dannyphee-journey-v1.png"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/dannyphee-journey-v1-1536.webp"
+              srcSet="/images/dannyphee-journey-v1-768.webp 768w, /images/dannyphee-journey-v1-1536.webp 1536w"
+              sizes="(min-width: 1152px) 1088px, (min-width: 768px) calc(100vw - 64px), calc(100vw - 40px)"
               alt="Journey: real estate, presenting, markets, AI."
               width={1536}
               height={1024}
-              priority
-              unoptimized
+              fetchPriority="high"
+              decoding="async"
               className="h-auto w-full max-w-full"
             />
           </figure>
@@ -169,12 +181,16 @@ export default function HomePage() {
               </div>
               <div className="pillar-card__visual">
                 <figure>
-                  <Image
-                    src={pillar.src}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`${pillar.src}-1536.webp`}
+                    srcSet={`${pillar.src}-768.webp 768w, ${pillar.src}-1536.webp 1536w`}
+                    sizes="(min-width: 1152px) 363px, (min-width: 768px) calc((100vw - 66px) / 3), calc(100vw - 40px)"
                     alt=""
                     width={1536}
                     height={1024}
-                    unoptimized
+                    loading="lazy"
+                    decoding="async"
                     className="h-auto w-full max-w-full"
                   />
                 </figure>

@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "/images/x-banner.jpg",
-        width: 1500,
-        height: 500,
-        alt: "Approved X banner for Danny Phee: Presenting × Markets × AI",
+        url: "/images/og-default-1200x630.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Danny Phee: Presenting × Markets × AI",
       },
     ],
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     creator: site.handle,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: ["/images/x-banner.jpg"],
+    images: ["/images/og-default-1200x630.jpg"],
   },
 };
 

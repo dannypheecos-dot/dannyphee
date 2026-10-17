@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TagList } from "@/components/PostMeta";
 import { getPost, posts } from "@/lib/posts";
+import { pageSocial } from "@/lib/seo";
 import { realEstate, site } from "@/lib/site";
 
 type Params = { slug: string };
@@ -25,13 +26,13 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     alternates: { canonical: `/writing/${post.slug}` },
-    openGraph: {
+    ...pageSocial({
       type: "article",
       title: post.title,
       description: post.description,
       publishedTime: post.date,
-      url: `/writing/${post.slug}`,
-    },
+      path: `/writing/${post.slug}`,
+    }),
   };
 }
 

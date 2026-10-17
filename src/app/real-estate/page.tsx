@@ -2,11 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { postsByDate } from "@/lib/posts";
 import { realEstate } from "@/lib/site";
+import { pageSocial } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Real estate",
   description: `Danny Phee is a licensed Las Vegas real estate agent with ${realEstate.brokerage}. Nevada license ${realEstate.licenseNumber}.`,
   alternates: { canonical: "/real-estate" },
+  ...pageSocial({
+    path: "/real-estate",
+    title: "Real estate · Danny Phee",
+    description: `Danny Phee is a licensed Las Vegas real estate agent with ${realEstate.brokerage}. Nevada license ${realEstate.licenseNumber}.`,
+  }),
 };
 
 export default function RealEstatePage() {
