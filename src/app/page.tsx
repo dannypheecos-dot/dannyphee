@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
-const journey = [
+const journey: ReadonlyArray<{ n: string; title: string; line: string; href?: string }> = [
   {
     n: "01",
     title: "REAL ESTATE",
-    line: "Entrepreneurship and selling.",
+    line: "Licensed in Las Vegas. Still practicing.",
+    href: "/real-estate",
   },
   {
     n: "02",
@@ -23,7 +24,7 @@ const journey = [
     title: "AI",
     line: "The layer connecting everything.",
   },
-] as const;
+];
 
 const pillars = [
   {
@@ -133,7 +134,16 @@ export default function HomePage() {
                   {stage.title}
                 </p>
                 <p className="mt-1.5 text-[13px] leading-relaxed text-[#d8d3c8]">
-                  {stage.line}
+                  {stage.href ? (
+                    <Link
+                      href={stage.href}
+                      className="text-gold underline underline-offset-4 hover:text-gold-soft"
+                    >
+                      {stage.line}
+                    </Link>
+                  ) : (
+                    stage.line
+                  )}
                 </p>
               </li>
             ))}
@@ -176,6 +186,12 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+        <p className="mt-6 text-sm text-[#d8d3c8]">
+          Also: licensed Las Vegas real estate agent →{" "}
+          <Link href="/real-estate" className="text-gold underline underline-offset-4">
+            Real estate
+          </Link>
+        </p>
       </section>
       <section className="border-t border-white/10">
         <div className="mx-auto grid max-w-site gap-8 px-5 py-8 md:grid-cols-2 md:gap-12 md:px-8 md:py-12">

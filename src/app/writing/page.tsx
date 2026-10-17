@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { WritingArchive } from "@/components/WritingArchive";
-import { writingNotes } from "@/lib/site";
+import { postsByDate } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "Writing",
-  description: "Notes on presenting, markets, AI, decision-making, and the build.",
+  description: "Notes on markets, real estate, Sharp Wallet, and the AI Lab.",
   alternates: { canonical: "/writing" },
 };
 
@@ -19,10 +19,15 @@ export default function WritingPage() {
         <div className="hairline my-5 max-w-40 md:my-6" />
         <div className="space-y-4 text-base leading-relaxed text-[#d8d3c8] md:space-y-5 md:text-[1.05rem]">
           <p>Essays and notes, filed as they are finished.</p>
+          <p>
+            <a href="/feed.xml" className="text-gold underline underline-offset-4">
+              RSS feed
+            </a>
+          </p>
         </div>
       </header>
       <div className="mx-auto max-w-site px-5 pb-16 md:px-8 md:pb-20">
-        <WritingArchive notes={writingNotes} />
+        <WritingArchive notes={postsByDate} />
       </div>
     </article>
   );

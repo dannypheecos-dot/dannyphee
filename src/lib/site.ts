@@ -9,34 +9,45 @@ export const site = {
   locale: "Las Vegas",
 } as const;
 
+// Nevada real estate licensing / advertising disclosure (NRS 645.315, NAC 645.610).
+// License number confirmed by Danny; brokerage name must stay prominent wherever shown.
+export const realEstate = {
+  licenseState: "Nevada",
+  licenseNumber: "S.0174898",
+  brokerage: "Keller Williams Realty Las Vegas",
+  officeNote: "Each office is independently owned and operated.",
+  equalHousing: "Equal Housing Opportunity.",
+  agentName: "Danny Phee",
+  agentTitle: "REALTOR®",
+  address: {
+    street: "9420 W Sahara Ave, Suite 100",
+    city: "Las Vegas",
+    state: "NV",
+    zip: "89117",
+  },
+  email: "thevegasrealestateagent@gmail.com",
+  kwProfileUrl: "https://dannyphee.kw.com",
+  zillowReviewsUrl: "https://www.zillow.com/profile/dannyphee/#reviews",
+  // Older site; plain-text mention only, positioned as secondary.
+  legacySiteLabel: "TheVegasRealEstateAgents.com",
+  legacySiteUrl: "https://www.thevegasrealestateagents.com",
+} as const;
+
 export const nav = [
   { href: "/", label: "HOME" },
   { href: "/about", label: "ABOUT" },
   { href: "/presenting", label: "PRESENTING" },
   { href: "/markets", label: "MARKETS" },
   { href: "/ai-lab", label: "AI LAB" },
+  { href: "/real-estate", label: "REAL ESTATE" },
   { href: "/writing", label: "WRITING" },
   { href: "/self-tout", label: "SELF TOUT" },
 ] as const;
 
-export const writingCategories = [
-  "PRESENTING",
-  "MARKETS",
-  "AI",
-  "DECISION-MAKING",
-  "BUILD LOG",
-  "SELF TOUT NOTES",
-] as const;
+export const writingTags = ["Markets", "Real Estate", "Sharp Wallet", "AI Lab"] as const;
 
-export type WritingCategory = (typeof writingCategories)[number];
+export type WritingTag = (typeof writingTags)[number];
 
-export type WritingNote = {
-  slug: string;
-  title: string;
-  category: WritingCategory;
-  date: string;
-  minutes: number;
-  description?: string;
-};
-
-export const writingNotes: WritingNote[] = [];
+export function tagSlug(tag: WritingTag) {
+  return tag.toLowerCase().replace(/\s+/g, "-");
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { Header } from "@/components/Header";
-import { site } from "@/lib/site";
+import { realEstate, site } from "@/lib/site";
 import "./globals.css";
 
 const display = Newsreader({
@@ -91,6 +91,21 @@ export default function RootLayout({
               </a>
               <span className="mx-2 text-gold">·</span>
               {site.locale}
+            </p>
+            <p className="text-sm tracking-normal text-paper md:text-right">
+              Licensed {realEstate.licenseState} real estate agent
+              <span className="mx-2 text-gold">·</span>
+              <span className="font-medium">{realEstate.brokerage}</span>
+              <span className="mx-2 text-gold">·</span>
+              {realEstate.licenseNumber}
+              <span className="block text-xs text-mute">
+                <a href={`mailto:${realEstate.email}`} className="hover:text-gold">
+                  {realEstate.email}
+                </a>
+              </span>
+              <span className="block text-xs text-mute">
+                {realEstate.officeNote} {realEstate.equalHousing}
+              </span>
             </p>
           </div>
         </footer>

@@ -2,11 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState, type ReactNode } from "react";
-import {
-  writingCategories,
-  type WritingCategory,
-  type WritingNote,
-} from "@/lib/site";
+import { TagList } from "@/components/PostMeta";
+import type { Post } from "@/lib/posts";
+import { writingTags, type WritingTag } from "@/lib/site";
 
 function FilterButton({
   active,
@@ -31,10 +29,10 @@ function FilterButton({
   );
 }
 
-export function WritingArchive({ notes }: { notes: WritingNote[] }) {
-  const [selected, setSelected] = useState<"ALL" | WritingCategory>("ALL");
+export function WritingArchive({ notes }: { notes: Post[] }) {
+  const [selected, setSelected] = useState<"ALL" | WritingTag>("ALL");
   const visible = useMemo(
-    () => (selected === "ALL" ? notes : notes.filter((note) => note.category === selected)),
+    () => (selected === "ALL" ? notes : notes.filter((note) => note.tags.includes(selected))),
     [selected, notes],
   );
 
@@ -44,13 +42,13 @@ export function WritingArchive({ notes }: { notes: WritingNote[] }) {
         <FilterButton active={selected === "ALL"} onClick={() => setSelected("ALL")}>
           ALL
         </FilterButton>
-        {writingCategories.map((category) => (
+        {writingTags.map((category) => (
           <FilterButton
             key={category}
             active={selected === category}
             onClick={() => setSelected(category)}
           >
-            {category}
+            {category.toUpperCase()}
           </FilterButton>
         ))}
       </div>
@@ -66,7 +64,7 @@ export function WritingArchive({ notes }: { notes: WritingNote[] }) {
             {visible.map((note) => (
               <li key={note.slug} className="py-6">
                 <p className="text-[11px] tracking-nav text-gold">
-                  {note.category}
+                  <TagList tags={note.tags} />
                   <span className="mx-2 text-mute">·</span>
                   <time dateTime={note.date}>{note.date}</time>
                   <span className="mx-2 text-mute">·</span>
@@ -77,9 +75,7 @@ export function WritingArchive({ notes }: { notes: WritingNote[] }) {
                     {note.title}
                   </Link>
                 </h2>
-                {note.description ? (
-                  <p className="mt-2 text-sm text-mute">{note.description}</p>
-                ) : null}
+                <p className="mt-2 text-sm text-mute">{note.description}</p>
               </li>
             ))}
           </ol>

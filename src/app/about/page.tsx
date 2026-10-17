@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import { realEstate } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -65,8 +67,13 @@ export default function AboutPage() {
           </p>
           <h2>Real estate</h2>
           <p>
-            Before financial media and webinars, I built my career in real estate. I still
-            maintain my real estate license and remain open to the right opportunities.
+            I’m a licensed Las Vegas real estate agent with {realEstate.brokerage}. It’s
+            where my career began, and I still practice alongside my presenting and market
+            work. More on the <Link href="/real-estate">Real estate page</Link>.
+          </p>
+          <p className="!text-sm text-mute">
+            {realEstate.licenseState} real estate license {realEstate.licenseNumber} ·{" "}
+            {realEstate.brokerage}. {realEstate.officeNote} {realEstate.equalHousing}
           </p>
           <h2>This chapter</h2>
           <p>
