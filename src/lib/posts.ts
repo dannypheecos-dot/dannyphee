@@ -36,7 +36,7 @@ export const posts: Post[] = [
         items: [
           "Single-family median sold price: $470,000. Flat vs. a year ago, down 1.1% from August, about 4% under the May/June record of $490,000.",
           "Condo/townhome median: $290,000, down 1.4% year over year.",
-          "Pace of sales equals about 5 months of supply, up from roughly 4 a year ago. 7,995 single-family homes were listed without an offer, up 6.6% from last year.",
+          "Single-family supply is 4.6 months, up 15.1% from a year ago (condos: 6.6 months, up 22.8%). 7,995 single-family homes were listed without an offer, up 6.6% from last year.",
           "About 76% of homes sold within 60 days.",
         ],
       },
